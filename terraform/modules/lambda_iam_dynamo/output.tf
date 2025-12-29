@@ -9,3 +9,14 @@ output "lambda_role_arn" {
 output "dynamodb_table_name" {
   value = aws_dynamodb_table.requests.name
 }
+
+output "lambda_invoke_arn" {
+  description = "Lambda function invoke ARN"
+  value       = aws_lambda_function.health_check.invoke_arn
+}
+
+output "lambda_name" {
+  description = "Lambda function name"
+  value       = aws_lambda_function.health_check.function_name
+}
+

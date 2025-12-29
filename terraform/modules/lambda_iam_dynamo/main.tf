@@ -46,5 +46,29 @@ resource "aws_iam_role_policy" "lambda_policy" {
   
 }
 
+data "archive_file" "lambda_zip" {
+  type = "zip"
+  source_dir = "${path.root}/../lambda"
+  output_path = "${path.module}/lambda.zip"
+  
+}
+resource "aws_lambda_function" "health_check" {
+  function_name = "${var.env}-health-check-function"
+  filename      = data.archive_file.lambda_zip.output_path
+  handler       = "handler.lambda_handler"
+  runtime       = "python3.11"
+  role          = aws_iam_role.lambda_role.arn
+
+  environment {
+    variables = {
+      TABLE_NAME = aws_dynamodb_table.requests.name
+    }
+  }
+
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+}
+
+
+
 
 
