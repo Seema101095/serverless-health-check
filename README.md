@@ -11,24 +11,30 @@ The `/health` endpoint logs requests, stores them in DynamoDB, and responds with
 
 ## Project Structure
 
+.
 ├── terraform/
-│ ├── main.tf
-│ ├── variables.tf
-│ ├── provider.tf
-│ ├── modules/lambda_iam_dynamo/
-│ │ ├── main.tf
-│ │ ├── output.tf
-│ │ └── variables.tf
-│ ├── staging.tfvars
-│ └── prod.tfvars
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── provider.tf
+│   ├── modules/
+│   │   └── lambda_iam_dynamo/
+│   │       ├── lambda.zip
+│   │       ├── main.tf
+│   │       ├── output.tf
+│   │       └── variables.tf
+│   ├── staging.tfvars
+│   ├── prod.tfvars
+│   └── .gitignore
 │
 ├── lambda/
-│ └── handler.py
+│   └── handler.py
 │
 ├── .github/
-│ └── workflows/deploy.yml
+│   └── workflows/
+│       └── deploy.yml
 │
 └── README.md
+
 
 ## Prerequisites
 
