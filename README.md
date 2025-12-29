@@ -9,8 +9,7 @@ The `/health` endpoint logs requests, stores them in DynamoDB, and responds with
 
 ---
 
-## Project Structure
-
+```text
 .
 ├── terraform/
 │   ├── main.tf
