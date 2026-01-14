@@ -9,8 +9,7 @@ The `/health` endpoint logs requests, stores them in DynamoDB, and responds with
 
 ---
 
-## Project Structure
-
+```text
 .
 ├── terraform/
 │   ├── main.tf
@@ -70,7 +69,9 @@ staging-requests-db / prod-requests-db
 api_url = https://<api-id>.execute-api.<region>.amazonaws.com/staging/health
 
 #Test the endpoint
-https://jq1wge8ol2.execute-api.us-east-1.amazonaws.com/staging/health
+curl https://<api-id>.execute-api.<region>.amazonaws.com/staging/health (bash)
+
+https://<api-id>.execute-api.<region>.amazonaws.com/staging/health(in Browser)
 
 #Expected Response
 {"status": "healthy", "message": "Request processed and saved."}
