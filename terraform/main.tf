@@ -8,20 +8,20 @@ resource "aws_api_gateway_rest_api" "health_api" {
   description = "API Gateway for health check Lambda"
   
 }
-# /health resource
-resource "aws_api_gateway_resource" "health" {
-  rest_api_id = aws_api_gateway_rest_api.health_api.id
-  parent_id   = aws_api_gateway_rest_api.health_api.root_resource_id
+# block for /health resource path
+resource "aws_api_gateway_resource" "health" {                 #AWS API Gateway Resource(path)
+  rest_api_id = aws_api_gateway_rest_api.health_api.id         #Attaches REST API ID
+  parent_id   = aws_api_gateway_rest_api.health_api.root_resource_id #defines Root Path(/)
   path_part   = "health"
 }
-# GET method
+# API Gateway method(GET, POST, etc)
 resource "aws_api_gateway_method" "health_get" {
   rest_api_id   = aws_api_gateway_rest_api.health_api.id
   resource_id   = aws_api_gateway_resource.health.id
   http_method   = "GET"
   authorization = "NONE"
 }
-# Lambda integration
+# API Gateway Lambda integration
 resource "aws_api_gateway_integration" "lambda_integration" {
   rest_api_id             = aws_api_gateway_rest_api.health_api.id
   resource_id             = aws_api_gateway_resource.health.id
